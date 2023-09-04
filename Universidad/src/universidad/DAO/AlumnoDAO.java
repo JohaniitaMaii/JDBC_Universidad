@@ -6,10 +6,8 @@ import universidad.entidades.Alumno;
  *
  * @author johan
  */
-public class AlumnoDAO extends Conexion {
-    
-    Alumno a = new Alumno();
-    
+public final class AlumnoDAO extends Conexion {
+        
     public void guardarAlumno(Alumno a ) throws Exception {
         try {
             if (a != null) {
@@ -40,16 +38,64 @@ public class AlumnoDAO extends Conexion {
         }
     }
     
-    public void buscarAlumnoPorNombre() throws Exception {
-        
+    public Alumno buscarAlumnoPorNombre(String nombre) throws Exception {
+        try {
+            String sql = "SELECT * FROM alumno WHERE nombre = '" + nombre + "';" ;
+            consultarBase(sql);
+            Alumno alumno = null;
+            while (resultado.next()){
+                alumno = new Alumno();
+                alumno.setId(resultado.getInt(1));
+                alumno.setDni(resultado.getLong(2));
+                alumno.setNombre(resultado.getString(3));
+                alumno.setApellido(resultado.getString(4));
+                alumno.setFecha_nac(resultado.getDate(5));
+                alumno.setEstado(resultado.getBoolean(6));
+            }              
+            desconectarBase();
+            return alumno;
+        } catch (Exception e) {
+            System.out.println("Error al buscar el Alumno");
+            throw e;
+        } finally {
+            desconectarBase();
+        }
     }
     
-    public void buscarAlumnoPorId() throws Exception {
-        
+    public Alumno buscarAlumnoPorId(int id) throws Exception {
+        try {
+            String sql = "SELECT * FROM alumno WHERE id = " + id;
+            consultarBase(sql);
+            Alumno alumno = null;
+            while (resultado.next()){
+                alumno = new Alumno();
+                alumno.setId(resultado.getInt(1));
+                alumno.setDni(resultado.getLong(2));
+                alumno.setNombre(resultado.getString(3));
+                alumno.setApellido(resultado.getString(4));
+                alumno.setFecha_nac(resultado.getDate(5));
+                alumno.setEstado(resultado.getBoolean(6));
+            }              
+            desconectarBase();
+            return alumno;
+        } catch (Exception e) {
+            System.out.println("Error al buscar el Alumno");
+            throw e;
+        } finally {
+            desconectarBase();
+        }
     }
     
-    public void eliminarAlumno() throws Exception {
-        
+    public void eliminarAlumno(int id) throws Exception {
+        try {
+            String sql = " DELETE FROM alumno WHERE id = " + id;
+            modificarBase(sql);
+        } catch (Exception e) {
+            System.out.println("Error al eliminar Alumno");
+            throw e;
+        } finally {
+            desconectarBase();
+        }
     }
     
 }
