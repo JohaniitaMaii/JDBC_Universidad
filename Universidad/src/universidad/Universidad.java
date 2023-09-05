@@ -40,15 +40,20 @@ public class Universidad {
 //          Materia ac = new Materia( "Logica", 3, 1);
 //          Materia ad = new Materia("Matematica", 2, 1);
           MateriaDAO md = new MateriaDAO();
+          Materia materia = md.getMateria(3);
+          Materia materia2 = md.getMateria("       Informat(>{}';)ica      ");
+          System.out.println(materia.Stringify());
+          System.out.println(materia2.Stringify());
+
 //          md.guardarMateria(aa);
 //          md.guardarMateria(ab);
 //          md.guardarMateria(ac);
 //          md.guardarMateria(ad);
-          System.out.println("-------------------");
-          md.getMateria("Logica").getIdMateria();
-          md.getMateria(3).getNombre();
-         
-          InscripcionService is = new InscripcionService();
+//          System.out.println("-------------------");
+//          md.getMateria("Logica").getIdMateria();
+//          md.getMateria(3).getNombre();
+//         
+//          InscripcionService is = new InscripcionService();
 //          Inscripcion ia = new Inscripcion(1, 8, 1, 1);
 //          Inscripcion ib = new Inscripcion(2, 8, 1, 2);
 //          Inscripcion ic = new Inscripcion(3, 8, 2, 3);
@@ -61,9 +66,9 @@ public class Universidad {
 //          is.insertarInscripcion(id);
 //          is.insertarInscripcion(ie);
 //          is.insertarInscripcion(ig);
-          System.out.println("------------------");
-          is.listarPorMateria("");
-          is.buscarInscripcionPorId(1);
+//          System.out.println("------------------");
+//          is.listarPorMateria("");
+//          is.buscarInscripcionPorId(1);
       } catch(Exception e){
           e.fillInStackTrace();
           System.out.println(e.getMessage());

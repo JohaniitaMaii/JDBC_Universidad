@@ -21,38 +21,31 @@ public final class MateriaDAO extends Conexion {
     }
     
     public Materia getMateria(String nombre) throws Exception {
-        nombre = nombre.replaceAll("[\\W \\D]", "").trim();
+        nombre = nombre.replaceAll("[^A-z0-9]", "").trim();
         String query = "select * from materia where nombre like '%" + nombre +"%';";
-
+        System.out.println(query);
         consultarBase(query);
-        Materia m = null;
-        while(resultado.next()){
-            m.setIdMateria(resultado.getInt(1));
-            m.setNombre(resultado.getString(2));
-            m.setAño(resultado.getInt(3));
-            m.setEstado(resultado.getInt(4));
-        }
-        return m;
-        // QUEDAMOS ACÁ PARA VERIFICAR QUE DEVUELVA LA CONSULTA
+        resultado.next();
+
+        nombre = resultado.getString("nombre");
+        int id = resultado.getInt("id_materia"),
+            año = resultado.getInt("año"),
+            estado = resultado.getInt("estado");
         
-//        nombre = resultado.getString("nombre");
-//        int id = resultado.getInt("id_materia"),
-//            año = resultado.getInt("año"),
-//            estado = resultado.getInt("estado");
+        desconectarBase();
         
-//        desconectarBase();
-        
-//        return new Materia(id, nombre, año, estado);
+        return new Materia(id, nombre, año, estado);
     }
     
     public Materia getMateria(int materia) throws Exception {
         
         String query = "select * from materia where id_materia = " + materia +";";
-
-       resultado = consultarBase(query);
+        System.out.println(query);
+        consultarBase(query);
+        resultado.next();
         
         String nombre = resultado.getString("nombre");
-        int id = resultado.getInt("id"),
+        int id = resultado.getInt("id_materia"),
             año = resultado.getInt("año"),
             estado = resultado.getInt("estado");
         return new Materia(id, nombre, año, estado);

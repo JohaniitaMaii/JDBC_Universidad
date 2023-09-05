@@ -59,6 +59,15 @@ public class Materia {
         this.nombre = nombre;
     }
     
+    public String Stringify() {
+        return (
+                "{\n"+
+               "\t'id' : " + this.idMateria + ",\n"+
+               "\t'nombre' : '" + this.nombre + "',\n"+
+               "\t'año': " + this.año + ",\n"+
+               "\t'estado': " + this.estado+ "\n}"
+        );
+    }
     
     
 }
