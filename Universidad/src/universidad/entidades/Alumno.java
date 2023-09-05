@@ -10,8 +10,8 @@ import java.sql.Date;
 
 public class Alumno {
     
-    private int id;
-    private long dni;
+    private Integer id;
+    private Long dni;
     private String nombre;
     private String apellido;
     private Date fecha_nac;
@@ -20,7 +20,7 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(int id, long dni, String nombre, String apellido, Date fecha_nac, boolean estado) {
+    public Alumno(Integer id, Long dni, String nombre, String apellido, Date fecha_nac, boolean estado) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
@@ -29,19 +29,19 @@ public class Alumno {
         this.estado = estado;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getDni() {
+    public Long getDni() {
         return dni;
     }
 
-    public void setDni(long dni) {
+    public void setDni(Long dni) {
         this.dni = dni;
     }
 
@@ -76,6 +76,11 @@ public class Alumno {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Alumno{" + "id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fecha_nac=" + fecha_nac + ", estado=" + estado + '}';
+    }
+
+
 }

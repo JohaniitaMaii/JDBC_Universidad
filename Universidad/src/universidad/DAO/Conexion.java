@@ -18,13 +18,13 @@ public abstract class Conexion {
     
     private final String USER = "root";
     private final String PASSWORD = "";
-    private final String DATABASE = "estudiante"; // universidad
+    private final String DATABASE = "universidad"; // universidad - estudiante
     private final String DRIVER = "org.mariadb.jdbc.Driver";
     
-    protected void conectarBase() throws Exception {  // jdbc:mariadb://localhost:1234/
+    protected void conectarBase() throws Exception {  // jdbc:mariadb://localhost:1234/ jdbc:mariadb://190-114-70-58.sanluisctv.com.ar/
         try {
-            Class.forName(DRIVER);   // 
-            String url = "jdbc:mariadb://190-114-70-58.sanluisctv.com.ar/" + DATABASE + "useSSL=false";
+            Class.forName(DRIVER);   //  + "useSSL=false"
+            String url = "jdbc:mariadb://localhost:1234/" + DATABASE ;
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             System.out.println("Error al conectar a la base de datos");
