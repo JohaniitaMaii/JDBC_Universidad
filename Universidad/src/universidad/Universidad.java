@@ -19,8 +19,8 @@ public class Universidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      String a = "aaaaaaa", b = "b";
-      a.replaceAll("\\w", b);
+      String a = "aaaa{@2}  ' /wqe}{wqe}{}}aaa1124ss", b = "b";
+      a = a.replaceAll("[\\W]", "");
         System.out.println(a);
         
         

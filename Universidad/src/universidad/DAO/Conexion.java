@@ -31,20 +31,24 @@ public abstract class Conexion {
         }
     }
 
-    protected ResultSet consultarBase(String sql) throws Exception {
+    protected void consultarBase(String sql) throws Exception {
         try {
+            System.out.println(sql);
+
             conectarBase();
             sentencia = conexion.createStatement();
             resultado = sentencia.executeQuery(sql);
-            return resultado;
         } catch (Exception e) {
             System.out.println("Error al consultar la Base de Datos");
             throw e;
+        } finally {
+            desconectarBase();
         }
     }
     
     protected void modificarBase(String sql) throws Exception {
         try {
+            System.out.println(sql);
             conectarBase();
             sentencia = conexion.createStatement();
             sentencia.executeUpdate(sql);
@@ -71,6 +75,9 @@ public abstract class Conexion {
             System.out.println("Error al desconectar Base");
             throw e;
         }
+    }
+    public String clearArg( String arg ) {
+        return arg.replaceAll("[\\W]", "").trim();
     }
 
      

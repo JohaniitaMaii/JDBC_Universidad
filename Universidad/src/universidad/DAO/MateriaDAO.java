@@ -21,9 +21,8 @@ public final class MateriaDAO extends Conexion {
     }
     
     public Materia getMateria(String nombre) throws Exception {
-        nombre = nombre.replaceAll("[^A-z0-9]", "").trim();
+        nombre = clearArg(nombre);
         String query = "select * from materia where nombre like '%" + nombre +"%';";
-        System.out.println(query);
         consultarBase(query);
         resultado.next();
 
@@ -32,15 +31,12 @@ public final class MateriaDAO extends Conexion {
             año = resultado.getInt("año"),
             estado = resultado.getInt("estado");
         
-        desconectarBase();
-        
         return new Materia(id, nombre, año, estado);
     }
     
     public Materia getMateria(int materia) throws Exception {
         
         String query = "select * from materia where id_materia = " + materia +";";
-        System.out.println(query);
         consultarBase(query);
         resultado.next();
         
@@ -48,10 +44,8 @@ public final class MateriaDAO extends Conexion {
         int id = resultado.getInt("id_materia"),
             año = resultado.getInt("año"),
             estado = resultado.getInt("estado");
-        return new Materia(id, nombre, año, estado);
-       // desconectarBase();
         
-        
+        return new Materia(id, nombre, año, estado);  
     }
     
     
@@ -63,7 +57,7 @@ public final class MateriaDAO extends Conexion {
     }
     
     public void deleteMateria(String materia) throws Exception {
-        materia = materia.replaceAll("[\\W \\D]", "").trim();
+        materia = clearArg(materia);
         String query = "delete from materia where nombre like "+materia+";";
         modificarBase(query);
     }
