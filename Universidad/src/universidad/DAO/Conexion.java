@@ -76,7 +76,7 @@ public abstract class Conexion {
             throw e;
         }
     }
-    public String clearArg( String arg ) {
+    public String clearQuery( String arg ) {
         return arg.replaceAll("[\\W]", "").trim();
     }
 

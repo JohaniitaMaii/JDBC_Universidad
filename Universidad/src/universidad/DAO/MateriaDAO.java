@@ -21,7 +21,7 @@ public final class MateriaDAO extends Conexion {
     }
     
     public Materia getMateria(String nombre) throws Exception {
-        nombre = clearArg(nombre);
+        nombre = clearQuery(nombre);
         String query = "select * from materia where nombre like '%" + nombre +"%';";
         consultarBase(query);
         resultado.next();
@@ -57,7 +57,7 @@ public final class MateriaDAO extends Conexion {
     }
     
     public void deleteMateria(String materia) throws Exception {
-        materia = clearArg(materia);
+        materia = clearQuery(materia);
         String query = "delete from materia where nombre like "+materia+";";
         modificarBase(query);
     }
