@@ -1,5 +1,7 @@
 package universidad.servicios;
 
+import java.util.List;
+import universidad.DAO.InscripcionDAO;
 import universidad.entidades.Inscripcion;
 
 /**
@@ -7,10 +9,10 @@ import universidad.entidades.Inscripcion;
  * @author johan
  */
 public class InscripcionService {
-    
-    
-    
-    public void insertarAlumno(Inscripcion inscripcion ) throws Exception {
+
+    InscripcionDAO idao = new InscripcionDAO();
+
+    public void insertarInscripcion(Inscripcion inscripcion) throws Exception {
         if (inscripcion.getId_incripcion() == null || inscripcion.getId_incripcion().toString().trim().isEmpty()) {
             throw new Exception("Debe indicar el Id de Inscripcion");
         }
@@ -23,34 +25,35 @@ public class InscripcionService {
         if (inscripcion.getId_materia() == null || inscripcion.toString().trim().isEmpty()) {
             throw new Exception("Debe indicar el Id de Materia");
         }
-        
-        a.guardarAlumno(alumno);
+
+        idao.guardarInscripcion(inscripcion);
     }
-    
-    public void modificarAlumno(Integer id) throws Exception {
-        Alumno alum = a.buscarAlumnoPorId(id);
-        if (alum == null) {
-            throw new Exception("El Alumno no existe en la Base de Datos");
+
+    public void modificarInscripcion(Integer id) throws Exception {
+        Inscripcion ins = idao.buscarInscripcionPorId(id);
+        if (ins == null) {
+            throw new Exception("La Inscripcion no existe en la Base de Datos");
         }
-        a.modificarAlumno(alum);
+        idao.modificarInscrpcion(ins);
     }
-    
-    public void buscarPorId(Integer id) throws Exception {
-        Alumno alum = a.buscarAlumnoPorId(id);
-        System.out.println(alum.toString());
+
+    public void buscarInscripcionPorId(Integer id) throws Exception {
+        Inscripcion ins = idao.buscarInscripcionPorId(id);
+        System.out.println(ins.toString());
     }
-    
-    public void listarPorApellido(String apellido) throws Exception {
-        List<Alumno> alumnos = a.listarAlumnoApellido(apellido);
-        for (Alumno a : alumnos) {
-            System.out.println(a.toString());
+
+    public void listarPorMateria(String materia) throws Exception {
+        List<Inscripcion> inscripciones = idao.listarInscripcion();
+        for (Inscripcion ins : inscripciones) {
+            System.out.println(ins.toString());
         }
     }
-    public void eliminarAlumno(Integer id) throws Exception {
-        Alumno alum = a.buscarAlumnoPorId(id);
-        if (alum == null) {
-            throw new Exception("El Alumno no existe en la Base de Datos");
+
+    public void eliminarInscripcion(Integer id) throws Exception {
+        Inscripcion ins = idao.buscarInscripcionPorId(id);
+        if (ins == null) {
+            throw new Exception("La Inscripcion no existe en la Base de Datos");
         }
-        a.eliminarAlumno(alum.getId());
+        idao.eliminarInscripcion(ins.getId_incripcion());
     }
 }
