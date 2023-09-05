@@ -1,37 +1,35 @@
 package universidad.DAO;
 
-import java.util.ArrayList;
-import java.util.List;
-import universidad.entidades.Alumno;
+import universidad.entidades.Inscripcion;
 
 /**
  *
  * @author johan
  */
-public final class AlumnoDAO extends Conexion {
-        
-    public void guardarAlumno(Alumno a ) throws Exception {
+public class InscrpcionDAO extends Conexion {
+    
+    public void guardarInscripcion(Inscripcion i ) throws Exception {
         try {
-            if (a == null) {
-                throw new Exception("Debe indicar un alumno");
+            if (i == null) {
+                throw new Exception("Debe indicar una Inscripcion");
             }
-            String sql = "INSERT INTO alumno(dni, nombre, apellido,fecha_nac) VALUES (" + a.getDni() + ", '" +
-                    a.getNombre() + "', '" + a.getApellido() + "','" + a.getFecha_nac() + "');";
+            String sql = "INSERT INTO inscripcion VALUES (" + i.getId_incripcion() + ", " +
+                    i.getNota() + ", " + i.getId_alumno() + "," + i.getId_materia() + ");";
             modificarBase(sql);
         } catch (Exception e ) {
-            System.out.println("Error al crear el Alumno");
+            System.out.println("Error al crear la Inscripcion");
             throw e;
         } finally {
             desconectarBase();
         }
     }
     
-    public void modificarAlumno(Alumno a ) throws Exception {
+    public void modificarInscrpcion(Inscripcion i ) throws Exception {
         try {
-        if (a != null) {
-            throw new Exception("Debe indicar el alumno");
+        if (i != null) {
+            throw new Exception("Debe indicar una Inscrpcion");
         }
-        String sql = "UPDATE alumno SET estado= " + a.isEstado() + " WHERE id= " + a.getId();
+        String sql = "UPDATE inscripcion SET nota = " + i.getNota() + " WHERE id= " + i.getId_incripcion();
         modificarBase(sql);
         } catch (Exception e) {
             throw e;
@@ -122,5 +120,6 @@ public final class AlumnoDAO extends Conexion {
         }
         return null;
     }
+    
     
 }

@@ -1,33 +1,29 @@
 package universidad.servicios;
 
-import java.util.List;
-import universidad.DAO.AlumnoDAO;
-import universidad.entidades.Alumno;
+import universidad.entidades.Inscripcion;
 
 /**
  *
  * @author johan
  */
-public class AlumnoService {
+public class InscripcionService {
     
-    AlumnoDAO a = new AlumnoDAO();
     
-    public void insertarAlumno(Alumno alumno ) throws Exception {
-        if (alumno.getNombre().equals("") || alumno.getNombre().trim().isEmpty() ) {
-            throw new Exception("Debe indicar el Nombre del Alumno");
+    
+    public void insertarAlumno(Inscripcion inscripcion ) throws Exception {
+        if (inscripcion.getId_incripcion() == null || inscripcion.getId_incripcion().toString().trim().isEmpty()) {
+            throw new Exception("Debe indicar el Id de Inscripcion");
         }
-        if (alumno.getApellido().equals("") || alumno.getApellido().trim().isEmpty()) {
-            throw new Exception("Debe indicar el apellido del Alumno");
+        if (inscripcion.getNota() == null || inscripcion.getNota().toString().trim().isEmpty()) {
+            throw new Exception("Debe indicar la Nota");
         }
-        if (alumno.getFecha_nac().toString().trim().isEmpty() || alumno.getFecha_nac().toString().equals("")) {
-            throw new Exception("Debe indicar Fecha de Nacimiento del Alumno");
+        if (inscripcion.getId_alumno() == null || inscripcion.getId_alumno().toString().equals("")) {
+            throw new Exception("Debe indicar el Id del Alumno");
         }
-        if (alumno.getId().toString().trim().isEmpty()) {
-            throw new Exception("Debe indicar un id ");
+        if (inscripcion.getId_materia() == null || inscripcion.toString().trim().isEmpty()) {
+            throw new Exception("Debe indicar el Id de Materia");
         }
-        if (alumno.getDni() == null || alumno.getDni().toString().trim().isEmpty()) {
-            throw new Exception("Debe indicar DNI del Alumno");
-        }
+        
         a.guardarAlumno(alumno);
     }
     
