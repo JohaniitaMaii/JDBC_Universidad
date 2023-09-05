@@ -12,7 +12,7 @@ public class Materia {
     private Integer idMateria, año, estado;
     private String nombre;
 
-    public Materia(Integer idMateria, Integer año, Integer estado, String nombre) {
+    public Materia(Integer idMateria, String nombre, Integer año, Integer estado) {
         this.idMateria = idMateria;
         this.año = año;
         this.estado = estado;
