@@ -31,12 +31,12 @@ public abstract class Conexion {
         }
     }
 
-    protected void consultarBase(String sql) throws Exception {
+    protected ResultSet consultarBase(String sql) throws Exception {
         try {
             conectarBase();
             sentencia = conexion.createStatement();
             resultado = sentencia.executeQuery(sql);
-
+            return resultado;
         } catch (Exception e) {
             System.out.println("Error al consultar la Base de Datos");
             throw e;
