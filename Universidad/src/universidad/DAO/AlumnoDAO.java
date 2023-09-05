@@ -104,6 +104,7 @@ public final class AlumnoDAO extends Conexion {
             String sql = "SELECT * FROM alumno WHERE apellido LIKE '" + apellido + "';";
             Alumno alumno = null;
             List<Alumno> alumnos = new ArrayList<>();
+            consultarBase(sql);
             while (resultado.next()){
                 alumno = new Alumno();
                 alumno.setId(resultado.getInt(1));

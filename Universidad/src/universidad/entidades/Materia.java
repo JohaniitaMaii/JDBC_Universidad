@@ -19,6 +19,14 @@ public class Materia {
         this.nombre = nombre;
     }
 
+    public Materia( String nombre, Integer año, Integer estado) {
+        this.año = año;
+        this.estado = estado;
+        this.nombre = nombre;
+    }
+
+    
+    
     public Integer getIdMateria() {
         return idMateria;
     }

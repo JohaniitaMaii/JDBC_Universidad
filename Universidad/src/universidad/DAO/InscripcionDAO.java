@@ -101,6 +101,7 @@ public class InscripcionDAO extends Conexion {
             String sql = "SELECT * FROM inscripcion ";
             Inscripcion inscripcion = null;
             List<Inscripcion> inscripciones = new ArrayList<>();
+            consultarBase(sql);
             while (resultado.next()){
                 inscripcion = new Inscripcion();
                 inscripcion.setId_incripcion(resultado.getInt(1));
