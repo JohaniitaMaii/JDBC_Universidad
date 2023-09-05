@@ -1,10 +1,6 @@
 
 package universidad.DAO;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import universidad.entidades.Materia;
 
@@ -24,13 +20,13 @@ public final class MateriaDAO extends Conexion {
         modificarBase(query);
     }
     
-    public Materia getMateria(String materia) throws Exception {
-        
-        String query = "select * from materia where nombre like %" + materia +"%;";
+    public Materia getMateria(String nombre) throws Exception {
+        nombre = nombre.replaceAll("[\\W \\D]", "").trim();
+        String query = "select * from materia where nombre like %" + nombre +"%;";
 
         consultarBase(query);
         
-        String nombre = resultado.getString("nombre");
+        nombre = resultado.getString("nombre");
         int id = resultado.getInt("id"),
             año = resultado.getInt("año"),
             estado = resultado.getInt("estado");
@@ -65,6 +61,7 @@ public final class MateriaDAO extends Conexion {
     }
     
     public void deleteMateria(String materia) throws Exception {
+        materia = materia.replaceAll("[\\W \\D]", "").trim();
         String query = "delete from materia where nombre like "+materia+";";
         modificarBase(query);
     }

@@ -15,6 +15,10 @@ public class Universidad {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+      String a = "aaaaaaa", b = "b";
+      a.replaceAll("\\w", b);
+        System.out.println(a);
+        
         
       try{
           AlumnoService as = new AlumnoService();
