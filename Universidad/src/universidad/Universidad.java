@@ -74,7 +74,7 @@ public class Universidad {
           System.out.println(e.getMessage());
       }
        
-      // http://190-114-70-58.sanluisctv.com.ar/
+
         
     }
 

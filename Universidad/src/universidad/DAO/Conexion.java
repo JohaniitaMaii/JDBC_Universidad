@@ -21,10 +21,10 @@ public abstract class Conexion {
     private final String DATABASE = "estudiante"; // universidad - estudiante
     private final String DRIVER = "org.mariadb.jdbc.Driver";
     
-    protected void conectarBase() throws Exception {  // jdbc:mariadb://localhost:1234/ jdbc:mariadb://190-114-70-58.sanluisctv.com.ar/
+    protected void conectarBase() throws Exception {  // jdbc:mariadb://localhost:1234/ 
         try {
             Class.forName(DRIVER);   //  + "useSSL=false"
-            String url = "jdbc:mariadb://190-114-70-58.sanluisctv.com.ar/" + DATABASE ;
+            String url = "jdbc:mariadb://localhost/" + DATABASE ;
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             System.out.println("Error al conectar a la base de datos");
